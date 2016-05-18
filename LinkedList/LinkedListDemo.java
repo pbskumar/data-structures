@@ -235,7 +235,7 @@ public class LinkedListDemo {
 		
 		
 		
-		/* 
+		
 		// Deleting Node, given data
 		System.out.println("\n\n");
 		System.out.println("Enter the data to be deleted:");
@@ -255,7 +255,7 @@ public class LinkedListDemo {
 		System.out.println("\n\n");
 		System.out.println("The Linked List is:");
 		lList.printLinkedList();
-		 */
+		
 		
 	}
 }
