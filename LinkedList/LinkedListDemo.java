@@ -249,6 +249,48 @@ class LinkedList {
 		
 	}
 	
+	public LinkedList reverseIteratively() {
+		Node current = head;
+		Node prev = null;
+		Node next = null;
+		
+		while(current != null) {
+			next = current.next;
+			current.next = prev;
+			prev = current;
+			current = next;
+		}
+		
+		// prev will be the head to the reversed LinkedList
+		
+		
+		return new LinkedList(prev);
+	}
+	
+	public LinkedList reverseRecursively() {
+		Node temp = head;
+		
+		if(temp == null) return null;
+		
+		temp = reverseRecursiveHelper(temp, null);
+		
+		return new LinkedList(temp);
+		
+	}
+	
+	private Node reverseRecursiveHelper(Node current, Node prev) {
+		Node tempHead = null;
+		if(current.next == null) {
+			current.next = prev;
+			tempHead = current;
+			return tempHead;
+		}
+		
+		tempHead = reverseRecursiveHelper(current.next, current);
+		current.next = prev;
+		
+		return tempHead;
+	}
 }
 
 
@@ -274,6 +316,17 @@ public class LinkedListDemo {
 		System.out.println("The Linked List created is:");
 		lList.printLinkedList();
 		
+		
+		System.out.println("\n\n");
+		System.out.println("The reversed Linked List created is:");
+		lList.reverseRecursively().printLinkedList();
+		
+		
+		System.out.println("\n\n");
+		System.out.println("The reversed Linked List created is:");
+		lList.reverseIteratively().printLinkedList();
+
+				
 		System.out.println("Enter data to be swapped: ");
 		lList.swapNodes(sc.nextInt(), sc.nextInt());
 		
