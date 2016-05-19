@@ -234,7 +234,7 @@ public class LinkedListDemo {
 		System.out.println("The length of linked list is: " + lList.getLength());
 		
 		// 0-indexing
-		Inserting Node at Index i
+		//Inserting Node at Index i
 		System.out.println("\n\n");
 		System.out.println("Enter the data of node to be inserted:");
 		nodeData = sc.nextInt();
