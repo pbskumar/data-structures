@@ -206,6 +206,49 @@ class LinkedList {
 		return length;
 	}
 	
+	public void swapNodes(int data1, int data2) {
+		Node current1 = head, current2 = head;
+		Node prev1 = null, prev2 = null;
+		Node temp;
+		
+		if(data1 == data2) {
+			System.out.println("Cannot swap same numbers.");
+			return;
+		}
+		
+		while(current1 != null && current1.data != data1) {
+			prev1 = current1;
+			current1 = current1.next;
+		}
+		
+		while(current2 != null && current2.data != data2) {
+			prev2 = current2;
+			current2 = current2.next;
+		}
+		
+		if(current1 == null || current2 == null) {
+			System.out.println("Data not found! Unable to swap.");
+			return;
+		}
+		
+		// Case if Data1 is present in head Node
+		if(prev1 != null)
+			prev1.next = current2;
+		else
+			head = current2;
+		
+		// Case if Data2 is present in head Node
+		if(prev2 != null)
+			prev2.next = current1;
+		else
+			head = current1;
+		
+		temp = current2.next;
+		current2.next = current1.next;
+		current1.next = temp;		
+		
+	}
+	
 }
 
 
@@ -229,6 +272,13 @@ public class LinkedListDemo {
 		
 		System.out.println("\n\n");
 		System.out.println("The Linked List created is:");
+		lList.printLinkedList();
+		
+		System.out.println("Enter data to be swapped: ");
+		lList.swapNodes(sc.nextInt(), sc.nextInt());
+		
+		System.out.println("\n\n");
+		System.out.println("The Linked List is:");
 		lList.printLinkedList();
 		
 		System.out.println("The length of linked list is: " + lList.getLength());
