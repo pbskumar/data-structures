@@ -196,6 +196,16 @@ class LinkedList {
 		System.out.println();
 	}
 	
+	public int getLength() {
+		Node temp = head;
+		int length = 0;
+		while(temp != null) {
+			length++;
+			temp = temp.next;
+		}
+		return length;
+	}
+	
 }
 
 
@@ -221,8 +231,10 @@ public class LinkedListDemo {
 		System.out.println("The Linked List created is:");
 		lList.printLinkedList();
 		
+		System.out.println("The length of linked list is: " + lList.getLength());
+		
 		// 0-indexing
-		// Inserting Node at Index i
+		Inserting Node at Index i
 		System.out.println("\n\n");
 		System.out.println("Enter the data of node to be inserted:");
 		nodeData = sc.nextInt();
@@ -255,7 +267,7 @@ public class LinkedListDemo {
 		System.out.println("\n\n");
 		System.out.println("The Linked List is:");
 		lList.printLinkedList();
-		
+			
 		
 	}
 }
