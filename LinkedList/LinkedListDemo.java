@@ -1,4 +1,6 @@
-import java.util.*;
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 class Node {
 	int data;
@@ -35,6 +37,10 @@ class LinkedList {
 	
 	LinkedList(Node head) {
 		this.head = head;
+	}
+	
+	public Node getHead() {
+		return head;
 	}
 	
 	private Node getLastNode() {
@@ -108,7 +114,7 @@ class LinkedList {
 		
 	}
 	
-	public void appendData(int data) {
+	public void appendNode(int data) {
 		
 		if(head == null){
 			head = new Node(data);
@@ -263,7 +269,6 @@ class LinkedList {
 		
 		// prev will be the head to the reversed LinkedList
 		
-		
 		return new LinkedList(prev);
 	}
 	
@@ -294,29 +299,103 @@ class LinkedList {
 }
 
 
+
 public class LinkedListDemo {
 	
-	public static void main(String[] args) {
+	public static LinkedList mergeSortedLinkedLists(LinkedList list1, LinkedList list2) {
+		LinkedList mergedLL = new LinkedList();
+				
+		Node current1 = list1.getHead();
+		Node current2 = list2.getHead();
 		
+		System.out.println(current1.data);
+		System.out.println(current2.data);
+		
+		while (true) {
+			if(current1 == null && current2 == null)
+				break;
+			if (current1 == null && current2 != null) {
+				// appending the reamaining nodes in List2. 
+				// Uses the appendNode(Node) function. 
+				// All remaining nodes are appended at once.
+				mergedLL.appendNode(current2);
+				break;
+			}
+			if (current1 != null && current2 == null) {
+				// appending the reamaining nodes in List1.
+				// Uses the appendNode(Node) function. 
+				// All remaining nodes are appended at once.
+				mergedLL.appendNode(current1);
+				break;
+			}
+			
+			if (current1.data <= current2.data) {
+				// appends data using appendNode(int) function
+				mergedLL.appendNode(current1.data);
+				current1 = current1.next;
+			}
+			else {
+				// appends data using appendNode(int) function
+				mergedLL.appendNode(current2.data);
+				current2 = current2.next;
+			}
+			
+		}
+		
+		return mergedLL;
+		
+	}
+	
+	public static void main(String[] args) throws FileNotFoundException {
+			
+		/*	
 		Scanner sc = new Scanner(System.in);
 		LinkedList lList = new LinkedList();
 		
-		System.out.println("How many elements do you want to insert into the Linked List?");
-		
-		int size = sc.nextInt();
-		int nodeData = 0;
-		
-		for(int i = 0; i < size; i++) {
-			System.out.print("Enter Element: ");
-			nodeData = sc.nextInt();
-			lList.appendData(nodeData);
-		}
+		File file =  new File("input.txt");
+		Scanner fsc = new Scanner(file);	
+		while (fsc.hasNext()) 
+		lList.appendNode(fsc.nextInt());
+	
 		
 		System.out.println("\n\n");
 		System.out.println("The Linked List created is:");
 		lList.printLinkedList();
+		*/
+		
+		LinkedList lList1 = new LinkedList();
+		LinkedList lList2 = new LinkedList();
+		
+		File file1 =  new File("input.txt");
+		File file2 =  new File("input2.txt");
+		
+		Scanner fsc1 = new Scanner(file1);	
+		Scanner fsc2 = new Scanner(file2);	
 		
 		
+		while (fsc1.hasNext()) 
+			lList1.appendNode(fsc1.nextInt());
+		
+		while (fsc2.hasNext()) 
+			lList2.appendNode(fsc2.nextInt());
+	
+		
+		System.out.println("\n");
+		System.out.println("Linked List 1:");
+		lList1.printLinkedList();
+		
+		System.out.println("\n");
+		System.out.println("Linked List 2:");
+		lList2.printLinkedList();
+		
+		System.out.println("\n\n");
+		System.out.println("Merged List:");
+		mergeSortedLinkedLists(lList1, lList2).printLinkedList();
+		
+		
+		
+		
+		/*
 		System.out.println("\n\n");
 		System.out.println("The reversed Linked List created is:");
 		lList.reverseRecursively().printLinkedList();
@@ -371,6 +450,6 @@ public class LinkedListDemo {
 		System.out.println("The Linked List is:");
 		lList.printLinkedList();
 			
-		
+		*/
 	}
 }
